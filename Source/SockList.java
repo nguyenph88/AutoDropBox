@@ -11,6 +11,8 @@ public class SockList {
 	private ArrayList<String> _sockList = new ArrayList<String>();
 	private FileInputStream fstream;
 	private String _currentSock;
+	private String _sockIP;
+	private int _sockPort;
 	
 	
 	public SockList(){
@@ -23,7 +25,6 @@ public class SockList {
 		try {
 			fstream = new FileInputStream("Socks.txt");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			// This is when file is not Found
 			e.printStackTrace();
 		}
@@ -37,7 +38,7 @@ public class SockList {
 		try {
 			while ((strLine = br.readLine()) != null)   {
 			  _sockList.add(strLine);
-			  System.out.println(strLine);
+	
 			}
 		} catch (IOException e) {
 			// cannot read file
@@ -85,5 +86,23 @@ public class SockList {
 	
 	void setCurrentSock(String ua){
 		this._currentSock = ua;
+	}
+	
+	String getSockIP(){
+		return this._sockIP;
+	}
+	
+	int getSockPort(){
+		return this._sockPort;
+	}
+	
+	void splitSock(String sock){
+		if (sock.contains(":")) {
+			String[] parts = sock.split(":");
+			this._sockIP = parts[0]; // IP
+			this._sockPort = Integer.parseInt(parts[1]); // PORT
+		} else {
+		    throw new IllegalArgumentException("Not a valid sock");
+		}
 	}
 }
