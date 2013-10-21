@@ -1,4 +1,6 @@
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,11 +13,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class AutoDropBox {
 	private FirefoxProfile _ffp;
 	private WebDriver _driver;
+	private UserAgentList _userAgentList;
+
 	
-	public AutoDropBox(FirefoxProfile ffpnew){
-		this._ffp = ffpnew;
+	public AutoDropBox(){
+		this._ffp = new FirefoxProfile();
+		this._userAgentList = new UserAgentList();
 		setUserAgent();
-		_driver = new FirefoxDriver(_ffp);
+		System.out.println(_userAgentList.getCurrentUserAgent() + " \nsize:" + _userAgentList.getUserAgentListSize());
+		//_driver = new FirefoxDriver(_ffp);
 	}
 	
     public void Start(){    	
@@ -69,7 +75,7 @@ public class AutoDropBox {
     
     public void setUserAgent(){
     	_ffp.setPreference("general.useragent.override",
-    	    	"Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20100101 Firefox/15.0");
+    	    	"Mozilla/5.0 (Windows Funny 6.1; rv:15.0) Gecko/20100101 Firefox/15.0");
     }
     
     public void delay(int ms){
@@ -87,5 +93,6 @@ public class AutoDropBox {
     public FirefoxProfile getFFP(){
     	return this._ffp;
     }
+
 }
 

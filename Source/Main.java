@@ -4,8 +4,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		// Well, this is actually made to work with firefox only
-		AutoDropBox main = new AutoDropBox(new FirefoxProfile());
+		AutoDropBox main = new AutoDropBox();
 		//main.Start();
-		main.testUserAgent();
+		//main.testUserAgent();
 	}
 }
