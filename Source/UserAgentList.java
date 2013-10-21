@@ -63,6 +63,16 @@ public class UserAgentList {
 		}
 	}
 	
+	String getRandomUserAgent(){
+		if (_userAgentList.isEmpty()){
+			return "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser 1.98.744; .NET CLR 3.5.30729)";
+		} else {
+			Random r = new Random();
+			int random = r.nextInt(getUserAgentListSize());
+			return(getUserAgentFromList(random));			
+		} 
+	}
+	
 	int getUserAgentListSize(){
 		return this._userAgentList.size();
 	}

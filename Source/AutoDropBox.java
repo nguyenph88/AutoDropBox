@@ -20,8 +20,7 @@ public class AutoDropBox {
 		this._ffp = new FirefoxProfile();
 		this._userAgentList = new UserAgentList();
 		setUserAgent();
-		System.out.println(_userAgentList.getCurrentUserAgent() + " \nsize:" + _userAgentList.getUserAgentListSize());
-		//_driver = new FirefoxDriver(_ffp);
+		_driver = new FirefoxDriver(_ffp);
 	}
 	
     public void Start(){    	
@@ -74,8 +73,11 @@ public class AutoDropBox {
     }
     
     public void setUserAgent(){
-    	_ffp.setPreference("general.useragent.override",
-    	    	"Mozilla/5.0 (Windows Funny 6.1; rv:15.0) Gecko/20100101 Firefox/15.0");
+    	_ffp.setPreference("general.useragent.override", getRandomUserAgent());
+    }
+    
+    String getRandomUserAgent(){
+    	return this._userAgentList.getRandomUserAgent();
     }
     
     public void delay(int ms){
