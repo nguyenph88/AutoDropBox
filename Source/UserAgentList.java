@@ -14,7 +14,6 @@ public class UserAgentList {
 	
 	
 	public UserAgentList(){
-		// doing nothing
 		openFile();
 		initializeList();
 		randomizeUserAgent();
