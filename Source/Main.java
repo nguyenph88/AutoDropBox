@@ -4,7 +4,5 @@ public class Main {
 		// Well, this is actually made to work with firefox only
 		//AutoDropBox main = new AutoDropBox();
 		//main.Start();
-		SockList sl = new SockList();
-		
 	}
 }
