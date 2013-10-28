@@ -1,10 +1,11 @@
-import java.awt.BorderLayout;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -12,7 +13,6 @@ import javax.swing.ScrollPaneConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.Random;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -28,10 +28,15 @@ public class GUI extends JFrame {
 	private JTextField fldReferral;
 	private JTextField fldAccounts;
 	private JTextArea textArea;
-	private AutoDropBox _autoDropBox;
+	private AutoDropBox _autoDropBox = new AutoDropBox();
 	private SockList _sockList;
 	private NameGenerator _nameGenerator = new NameGenerator("prefix.txt");
 	private EmailGenerator _emailGenerator = new EmailGenerator();
+	private String _password = "passasd!@#123"; // or your desired password
+	private boolean _isFirstTime = true;
+	private int _accountNumber = 0; // how many accounts to create
+	private String [] _fullInfo = new String[4]; // this hold the full info of the current account
+	// aelninluedul347@yahoo.com : this is for thesting this account
 	
 	/**
 	 * Launch the application.
@@ -128,11 +133,70 @@ public class GUI extends JFrame {
 	 */
 	public void initializeMessage(){
 		fldSocks.setText("Set sock or leave to use local IP");
-		fldReferral.setText("https://db.tt/nkcXZIYj");
-		fldAccounts.setText("5");
-		textArea.setText("*****AutoDropBox Version 1.0*****\n"
-				+ "- Please see Readme file for more details\n"
-				+ "- Contact me: nguyenph88@gmail.com");
+		fldReferral.setText("https://db.tt/K8IR2AXm");
+		fldAccounts.setText("1");
+		textArea.setText("***** AutoDropBox Version 1.0 | Please see Readme file for more details ******\n"
+				+ "***** Contact me: nguyenph88@gmail.com | http://www.nguyenphuoc.net *****\n");
+	}
+	
+	/**
+	 * Get the current account number from the account number field
+	 */
+	public int getAccountNumber(){
+		int currentAccount = Integer.parseInt(fldAccounts.getText());
+		
+		if (currentAccount == 0){
+			messageBox("Done! There is no more request to create!");
+			return 0;
+		} else if (currentAccount < 0 ){
+			messageBox("Invalid number of accounts!");
+			return 0;
+		} else {
+			_accountNumber = currentAccount;
+			return _accountNumber;
+		}
+	}
+	
+	/**
+	 * Update current account number from field
+	 * @param number: new number
+	 */
+	public void setAccountNumber(int number){
+		_accountNumber = number;
+		fldAccounts.setText(Integer.toString(_accountNumber));
+	}
+	
+	/**
+	 * Pop out the warning message
+	 * @param s: String to pop out
+	 */
+	public void messageBox(String s){
+		   JOptionPane.showMessageDialog(null, s);
+	}
+	
+	/**
+	 * Return the referral link
+	 * @return referral link
+	 */
+	public String getReferralLink(){
+		return fldReferral.getText();
+	}
+	
+	/**
+	 * Generating information and save into an array
+	 */
+	public void generateInfo(){
+		_fullInfo[0] = _nameGenerator.compose(2);
+		_fullInfo[1] = _nameGenerator.compose(2);
+		_fullInfo[2] = _emailGenerator.generate(_fullInfo[0], _fullInfo[1]);
+		_fullInfo[3] = _password;
+	}
+	
+	/**
+	 * Start creating account based on the info saved in the array
+	 */
+	public void startCreateAccount(){
+		_autoDropBox.Start(getReferralLink(), _fullInfo[0], _fullInfo[1], _fullInfo[2], _fullInfo[3]);
 	}
 	
 	/**
@@ -153,17 +217,26 @@ public class GUI extends JFrame {
 	 */
 	private class BtnStartActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			String firstName = _nameGenerator.compose(2);
-			String lastName = _nameGenerator.compose(2);
-			String password = "asd123!@#";
-			String email = _emailGenerator.generate(firstName, lastName);
-			String fullWriteOut = firstName + " | " + lastName + " | " + email;
-		    
-
-		    // nextInt is normally exclusive of the top value,
-		    // so add 1 to make it inclusive
-		   // int randomNum = rand.nextInt((999 - 100) + 1) + 100;
-			textArea.setText(textArea.getText() + "\n" + fullWriteOut);
+			int i, currentAccount;
+			
+			// clear the intro
+			if (_isFirstTime){
+				textArea.setText("Starting ...");
+				_isFirstTime = false;
+			}
+			
+			currentAccount = getAccountNumber();
+			
+			// main loop
+			for (i = 0; i < currentAccount; i++){
+				generateInfo();
+				String fullWriteOut = _fullInfo[0] + " | " + _fullInfo[1] + " | " + _fullInfo[2];
+				textArea.setText(textArea.getText() + "\n" + fullWriteOut);
+				startCreateAccount();
+				setAccountNumber(getAccountNumber() - 1);
+			}
+			
+			textArea.setText(textArea.getText() + "\n*** Done!!!");
 		}
 	}
 	

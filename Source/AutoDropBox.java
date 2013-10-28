@@ -13,42 +13,43 @@ public class AutoDropBox {
 
 	
 	public AutoDropBox(){
-		this._ffp = new FirefoxProfile();
-		this._userAgentList = new UserAgentList();
-		setUserAgent();
-		_driver = new FirefoxDriver(_ffp);
+		// doing nothing, otherwise it will pop up a lot of windows
 	}
 	
-    public void Start(){    	
+    public void Start(String url, String fName, String lName, String inputEmail, String inputPassword){
+    	initializeProtocol();
+    	
     	WebDriver driver = getDriver();
 
     	setUserAgent();
     	
     	// Initialize connection
-        driver.get("http://www.dropbox.com");
+        driver.get(url);
         
         // show the hidden form
         WebElement signUp = driver.findElement(By.name("register-submit-dummy"));
-        signUp.click();
+        
+        // IMPORANTANT: unless this is non-referral link, do not click here.
+        //signUp.click();
         
         // Wait until everything becomes visible
         delay(500);
         
         // First name field
         WebElement firstName = driver.findElement(By.name("fname"));
-        firstName.sendKeys("First Name Test");
+        firstName.sendKeys(fName);
         
         // First name field
         WebElement lastName = driver.findElement(By.name("lname"));
-        lastName.sendKeys("Last Name Test");
+        lastName.sendKeys(lName);
         
         // Email field
         WebElement email = driver.findElement(By.name("email"));
-        email.sendKeys("esdmaisslest@yahoo.com");
+        email.sendKeys(inputEmail);
         
         // Password field
         WebElement password = driver.findElement(By.name("password"));
-        password.sendKeys("pass123ASD!@#");
+        password.sendKeys(inputPassword);
                 
         // TOS Checkbox
         WebElement tos = driver.findElement(By.name("tos_agree"));
@@ -61,6 +62,13 @@ public class AutoDropBox {
         delay(750);
         //Close the browser
         driver.quit();
+    }
+    
+    public void initializeProtocol(){
+    	this._ffp = new FirefoxProfile();
+		this._userAgentList = new UserAgentList();
+		setUserAgent();
+		_driver = new FirefoxDriver(_ffp);
     }
     
     public void testSockProxy(){
