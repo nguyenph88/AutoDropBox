@@ -5,11 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.ScrollPaneConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.Random;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -17,12 +20,19 @@ import javax.swing.JTextArea;
 
 public class GUI extends JFrame {
 
+	/**
+	 * Instances
+	 */
 	private JPanel contentPane;
 	private JTextField fldSocks;
 	private JTextField fldReferral;
 	private JTextField fldAccounts;
 	private JTextArea textArea;
-
+	private AutoDropBox _autoDropBox;
+	private SockList _sockList;
+	private NameGenerator _nameGenerator = new NameGenerator("prefix.txt");
+	private EmailGenerator _emailGenerator = new EmailGenerator();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,7 +112,27 @@ public class GUI extends JFrame {
 		
 		textArea = new JTextArea();
 		textArea.setBounds(22, 114, 612, 267);
-		contentPane.add(textArea);
+		textArea.setEditable ( false );
+		
+		
+		JScrollPane scrollPane = new JScrollPane(textArea);
+		scrollPane.setBounds(22, 114, 612, 267);
+		scrollPane.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+		contentPane.add(scrollPane);
+		
+		initializeMessage();
+	}
+	
+	/**
+	 * Initialize message when the GUI first created
+	 */
+	public void initializeMessage(){
+		fldSocks.setText("Set sock or leave to use local IP");
+		fldReferral.setText("https://db.tt/nkcXZIYj");
+		fldAccounts.setText("5");
+		textArea.setText("*****AutoDropBox Version 1.0*****\n"
+				+ "- Please see Readme file for more details\n"
+				+ "- Contact me: nguyenph88@gmail.com");
 	}
 	
 	/**
@@ -123,7 +153,17 @@ public class GUI extends JFrame {
 	 */
 	private class BtnStartActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
+			String firstName = _nameGenerator.compose(2);
+			String lastName = _nameGenerator.compose(2);
+			String password = "asd123!@#";
+			String email = _emailGenerator.generate(firstName, lastName);
+			String fullWriteOut = firstName + " | " + lastName + " | " + email;
+		    
+
+		    // nextInt is normally exclusive of the top value,
+		    // so add 1 to make it inclusive
+		   // int randomNum = rand.nextInt((999 - 100) + 1) + 100;
+			textArea.setText(textArea.getText() + "\n" + fullWriteOut);
 		}
 	}
 	
