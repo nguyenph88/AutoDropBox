@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -13,6 +14,13 @@ import javax.swing.ScrollPaneConstants;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+import java.text.DateFormat;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -88,10 +96,10 @@ public class GUI extends JFrame {
 		contentPane.add(fldReferral);
 		fldReferral.setColumns(10);
 		
-		JButton btnStop = new JButton("Stop");
-		btnStop.addActionListener(new BtnStopActionListener());
-		btnStop.setBounds(536, 34, 117, 25);
-		contentPane.add(btnStop);
+		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new BtnSaveActionListener());
+		btnSave.setBounds(536, 34, 117, 25);
+		contentPane.add(btnSave);
 		
 		JLabel lblAccount = new JLabel("# Account");
 		lblAccount.setBounds(12, 75, 70, 15);
@@ -200,13 +208,46 @@ public class GUI extends JFrame {
 	}
 	
 	/**
-	 * Take care of Stop Button Click
+	 * Generating the content of the file before saving
+	 */
+	public String generateSaveContent(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		String text = "Created by AutoDropBox - (C)2013 Peter Nguyen - nguyenph88@gmail.com \n" 
+				     + "Saved at:" + dateFormat.format(date) 
+				     + "Referral URL:" + fldReferral.getText()
+				     + "\n===============================================\n"
+				     + textArea.getText();
+		return text;
+	}
+	
+	/**
+	 * Take care of Save Button Click
 	 * @author kiddo
 	 *
 	 */
-	private class BtnStopActionListener implements ActionListener {
+	private class BtnSaveActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.showSaveDialog(null);
+            File saveFile = fileChooser.getSelectedFile();
+            PrintStream out = null;
+            
+            try {
+                try {
+					out = new PrintStream(new FileOutputStream(saveFile.getPath()));
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                out.print(generateSaveContent());
+            }
+            finally {
+                if (out != null) out.close();
+            }
+            
+            messageBox("Sucessfully saved!");
+            textArea.append("\nSaved to:" + saveFile.getPath() + "\n");
 		}
 	}
 	
@@ -248,7 +289,7 @@ public class GUI extends JFrame {
 	 */
 	private class BtnSockActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
-			
+			messageBox("Not working with this version");
 		}
 	}
 }
