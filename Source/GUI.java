@@ -213,9 +213,9 @@ public class GUI extends JFrame {
 	public String generateSaveContent(){
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		Date date = new Date();
-		String text = "Created by AutoDropBox - (C)2013 Peter Nguyen - nguyenph88@gmail.com \n" 
+		String text = "Created by AutoDropBox - (C)2013 Peter Nguyen - nguyenph88@gmail.com - nguyenphuoc.net\n" 
 				     + "Saved at:" + dateFormat.format(date) 
-				     + "Referral URL:" + fldReferral.getText()
+				     + "\nReferral URL:" + fldReferral.getText()
 				     + "\n===============================================\n"
 				     + textArea.getText();
 		return text;
@@ -229,25 +229,29 @@ public class GUI extends JFrame {
 	private class BtnSaveActionListener implements ActionListener {
 		public void actionPerformed(ActionEvent arg0) {
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.showSaveDialog(null);
+            int returnVal = fileChooser.showSaveDialog(null);
             File saveFile = fileChooser.getSelectedFile();
             PrintStream out = null;
-            
-            try {
-                try {
-					out = new PrintStream(new FileOutputStream(saveFile.getPath()));
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-                out.print(generateSaveContent());
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+            	try {
+                    try {
+    					out = new PrintStream(new FileOutputStream(saveFile.getPath()));
+    				} catch (FileNotFoundException e) {
+    					e.printStackTrace();
+    				}
+                    out.print(generateSaveContent());
+                }
+                finally {
+                    if (out != null) out.close();
+                }
+            	messageBox("Sucessfully saved!");
+                textArea.append("\nSaved to:" + saveFile.getPath() + "\n");
+            } else {
+                messageBox("Failed to save!");
             }
-            finally {
-                if (out != null) out.close();
-            }
-            
-            messageBox("Sucessfully saved!");
-            textArea.append("\nSaved to:" + saveFile.getPath() + "\n");
+               
+           
 		}
 	}
 	
