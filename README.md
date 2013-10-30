@@ -13,7 +13,16 @@ Important Notes:
 2. The purpose of this tool is to demonstrate how to automate a web services, along with analyzing how online services can be exploited => for education purpose only.
 3. Copying, re-producing, re-distributing this tool without my agreement is a crime :)
 
+Languages/Tools:
+-----------------
+This tool was tested/programmed using:
+1. Java 7.45 (Eclipse Kepler)
+2. Selenium 2.04
+3. Ubuntu 12.04 x64
+ 
 
+Initialization:
+--------------
 How to initialize the projects:
 - All config and structure in pom.xml
 - Initialize: mvn clean install
