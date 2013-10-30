@@ -16,10 +16,10 @@ Important Notes:
 Languages/Tools:
 -----------------
 This tool was tested/programmed using:
+
 1. Java 7.45 (Eclipse Kepler)
 2. Selenium 2.04
 3. Ubuntu 12.04 x64
- 
 
 Initialization:
 --------------
