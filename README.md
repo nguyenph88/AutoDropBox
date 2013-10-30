@@ -7,6 +7,8 @@ Dropbox is now offering a referral program, in which for each people register an
 
 In order to have 0.5G, other user has to perform 2 tasks: register through the referral link and install dropbox with the registered account. This github only hosts the first part of the tool which helps automate the register process through dropbox. Another part of it is to install dropbox and link the current machine to the account will not be shown here, as it's critical. 
 
+![Image](/img/gui.png?raw=true)
+
 Important Notes:
 -------------
 1. According to Dropbox's ToS, access or search the Services by any means other than our publicly supported interfaces => I'm not responsible for anythin.
