@@ -53,6 +53,13 @@ There are 3 improvements for secured connection by this tool:
 2. MAC Address Spoofing: which is pretty much not included in this public version.
 3. IP Spoofing: I don't use proxy as it is not secured and slow. This tool implements sock5 as it's unique and and fast. There are many websites providing sock5 for free but sometimes it's as slow as proxy. 
 
+What is Phase 2:
+---------------
+As I mentioned it's critical, and is extremely restricted to scrape the install process. But sharing some hints won't hurt anyway:
+
+1. I'm kidding, study it by yourselves :) I'm not sharing.
+
+
 Initialization:
 --------------
 How to initialize the projects:
