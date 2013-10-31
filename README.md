@@ -58,6 +58,12 @@ What is Phase 2:
 As I mentioned it's critical, and is extremely restricted to scrape the install process. But sharing some hints won't hurt anyway:
 
 1. I'm kidding, study it by yourselves :) I'm not sharing.
+2. Considering using some text command OS, i'm taking adavantages of EC2 and other cloud services, like Azure etc ...
+3. This part may not be done by java, but other automatic script like using bash, or python on linux infrastructure ...
+
+![Image](/img/linux1.png?raw=true)
+
+![Image](/img/linux2.png?raw=true)
 
 
 Initialization:
