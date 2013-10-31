@@ -65,6 +65,13 @@ As I mentioned it's critical, and is extremely restricted to scrape the install 
 
 ![Image](/img/linux2.png?raw=true)
 
+Conclusion:
+----------
+With less effort (may be none) I could be able to get more spaces from Dropbox by using this scraping tool. Probably you could be able to speed up (like couple account within a min). Mine took long between accounts before I was testing each possbile case that could happen.
+
+In conclusion, the purpose of referring program is to get more people using their service, which I think is awesome. It's not only a cloud storage but also sharing tool between devices. 
+
+![Image](/img/dopbox.png?raw=true)
 
 Initialization:
 --------------
