@@ -5,7 +5,7 @@ Abstration:
 ----------
 Dropbox is now offering a referral program, in which for each people register and install dropbox through your referral link, your dropbox capacity will increased 500Mbs ( 0.5G ). However, the maximum expansion for the storage is 16G. Taking that advantage, this tool demonstrates how to automate (in other word, scrape) the referral procedure.
 
-In order to have 0.5G, other user has to perform 2 tasks: register through the referral link and install dropbox with the registered account. This github only hosts the first part of the tool which helps automate the register process through dropbox. Another part of it is to install dropbox and link the current machine to the account will not be shown here, as it's critical. 
+In order to have 0.5G, other user has to perform 2 tasks: register through the referral link and install dropbox with the registered account. This github only hosts the first part (Phase 1) of the tool which helps automate the register process through dropbox. Another part of it is to install dropbox and link the current machine to the account will not be shown here, as it's critical. 
 
 ![Image](/img/gui.png?raw=true)
 
