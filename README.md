@@ -78,7 +78,7 @@ Dropbox Security Hole:
 - You may notice that there is no way (or may be hard) to cheat a program (and its security check) in Windows enviroment. That's why Linux or other openOS come in handy.
 - You may think this section doesn't have anything to do with the tool, but it does. Why? Because I used them to implement my tool.
 
-### host_id :
+### host_id and config.db:
 - Dropbox links your account and a device by using host_id, it is generated randomly but when it's linked to an account it's unique. Catch that link, and manipulate that. It's an interesting thing to do.
 - Let's try purging the dropbox folder after every time try sync it with an account, based on a trace, it looks like dropbox uses /dev/urandom as a seed for the data.
 - The program procedures also read 16 bytes from this. When the values do not end up in the host id the size corresponds to the size of an md5 checksum, so at a wild guess this is how it is done. 
@@ -90,7 +90,14 @@ Dropbox Security Hole:
 
 A video demonstration helps understand the situation better: http://www.youtube.com/watch?v=SsXV1OXW3fo
 
-- And it is also 
+### dropbox.db
+- There is nothing much to exploit in this db file, but can you use sqlite to browse its content.
+- Take note that the host_id may have something to do with / from this file.
+- A nice snippet to demonstrate:
+
+
+
+
 
 
 
