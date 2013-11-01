@@ -73,6 +73,24 @@ In conclusion, the purpose of referring program is to get more people using thei
 
 ![Image](/img/dopbox.png?raw=true)
 
+Dropbox Security Hole:
+---------------------
+- You may notice that there is no way (or may be hard) to cheat a program (and its security check) in Windows enviroment. That's why Linux or other openOS come in handy.
+- Dropbox links your account and a device by using host_id, it is generated randomly but when it's linked to an account it's unique. Catch that link, and manipulate that. It's an interesting thing to do.
+- Let's try purging the dropbox folder after every time try sync it with an account, based on a trace, it looks like dropbox uses /dev/urandom as a seed for the data.
+- The program procedures also read 16 bytes from this. When the values do not end up in the host id the size corresponds to the size of an md5 checksum, so at a wild guess this is how it is done. 
+- I don't believe the value is deterministic. The string of host_id is generated randomly.
+- But I believe it is saved in %APPDATA%\Dropbox\config.db 
+
+> what if a trojan try to access and store the config.db, well that means when I replace my config.db content with your config.db I may get a chance to access your file. 
+> Up to the time I was doing this testing, dropbox didn't link the config.db to any particular device. Meant that there is not difference between my PC and your PC or my iOS device and your Android device.
+
+A video demonstration helps understand the situation better: http://www.youtube.com/watch?v=SsXV1OXW3fo
+
+- And it is also 
+
+
+
 Initialization:
 --------------
 How to initialize the projects:
