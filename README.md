@@ -76,6 +76,9 @@ In conclusion, the purpose of referring program is to get more people using thei
 Dropbox Security Hole:
 ---------------------
 - You may notice that there is no way (or may be hard) to cheat a program (and its security check) in Windows enviroment. That's why Linux or other openOS come in handy.
+- You may think this section doesn't have anything to do with the tool, but it does. Why? Because I used them to implement my tool.
+
+### host_id :
 - Dropbox links your account and a device by using host_id, it is generated randomly but when it's linked to an account it's unique. Catch that link, and manipulate that. It's an interesting thing to do.
 - Let's try purging the dropbox folder after every time try sync it with an account, based on a trace, it looks like dropbox uses /dev/urandom as a seed for the data.
 - The program procedures also read 16 bytes from this. When the values do not end up in the host id the size corresponds to the size of an md5 checksum, so at a wild guess this is how it is done. 
