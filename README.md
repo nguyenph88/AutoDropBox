@@ -71,8 +71,6 @@ With less effort (may be none) I could be able to get more spaces from Dropbox b
 
 In conclusion, the purpose of referring program is to get more people using their service, which I think is awesome. It's not only a cloud storage but also sharing tool between devices. 
 
-![Image](/img/dopbox.png?raw=true)
-
 Dropbox Security Hole:
 ---------------------
 - You may notice that there is no way (or may be hard) to cheat a program (and its security check) in Windows enviroment. That's why Linux or other openOS come in handy.
