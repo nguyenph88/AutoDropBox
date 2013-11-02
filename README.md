@@ -90,7 +90,21 @@ Dropbox Security Hole:
 > What if a trojan try to access and steal the config.db, well that means when I replace my config.db content with your config.db I may get a chance to access your file. Interesting, huh? 
 > Up to the time I was doing this testing, dropbox didn't link the config.db to any particular device. Meant that there is no difference between my PC and your PC or my iOS device and your Android device.
 
+
+> Since host_id is the only parameter to help sync your device and dropbox account. if you try to change your password after losing your config.db file, it doesn't really affect the exploiter. Unless you unlink everything, resynchronize all the devices and it should help. (i'm not sure, I haven't tried it yet)
+
 A video demonstration helps understand the situation better: http://www.youtube.com/watch?v=SsXV1OXW3fo
+
+### config.db
+
+Let's analyze the config.db a bit and see what is inside the file (using sqlite3):
+
+- email: (I believe) this is the account's email address. I don't think it does matter at all as I have tried to change the value and the dropbox synchronization process still works.
+- dropbox_path: the folder that is (or symlink) to a dropbox folder.
+- host_id: this is initialized after I link my device to the dropbox account. Pretty much it doesn't change. (What happen if I change it?) keep in mind that in order to automatize the install process, you have to take advantage of this host_id.
+
+
+
 
 ### dropbox.db
 - There is nothing much to exploit in this db file, but can you use sqlite to browse its content.
