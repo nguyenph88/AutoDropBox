@@ -69,9 +69,9 @@ As I mentioned it's critical, and is extremely restricted to scrape the install 
 
 Conclusion:
 ----------
-With less effort (may be none) I could be able to get more spaces from Dropbox by using this scraping tool. Probably you could be able to speed up (like couple account within a min). Mine took long between accounts before I was testing each possbile case that could happen.
+With less effort (may be none) I could be able to get more spaces from Dropbox by using this auto tool. Probably you could be able to speed up (like couple accounts within a min). Mine took long between accounts because I was testing each possbile case that could happen.
 
-In conclusion, the purpose of referring program is to get more people using their service, which I think is awesome. It's not only a cloud storage but also sharing tool between devices. 
+In conclusion, the purpose of referring program is to get more people using their service, which I think is awesome. It's not only a cloud storage but also sharing tool between devices. Support them and stop botting T_T ...
 
 ![Image](/img/dropbox.png?raw=true)
 
@@ -82,13 +82,13 @@ Dropbox Security Hole:
 
 ### host_id and config.db:
 - Dropbox links your account and a device by using host_id, it is generated randomly but when it's linked to an account it's unique. Catch that link, and manipulate that. It's an interesting thing to do.
-- Let's try purging the dropbox folder after every time try sync it with an account, based on a trace, it looks like dropbox uses /dev/urandom as a seed for the data.
+- Let's try purging the dropbox folder: after every time I try sync it with an account, based on a trace, it looks like dropbox uses /dev/urandom as a seed for the data.
 - The program procedures also read 16 bytes from this. When the values do not end up in the host id the size corresponds to the size of an md5 checksum, so at a wild guess this is how it is done. 
 - I don't believe the value is deterministic. The string of host_id is generated randomly.
 - But I believe it is saved in %APPDATA%\Dropbox\config.db 
 
-> what if a trojan try to access and store the config.db, well that means when I replace my config.db content with your config.db I may get a chance to access your file. 
-> Up to the time I was doing this testing, dropbox didn't link the config.db to any particular device. Meant that there is not difference between my PC and your PC or my iOS device and your Android device.
+> What if a trojan try to access and steal the config.db, well that means when I replace my config.db content with your config.db I may get a chance to access your file. Interesting, huh? 
+> Up to the time I was doing this testing, dropbox didn't link the config.db to any particular device. Meant that there is no difference between my PC and your PC or my iOS device and your Android device.
 
 A video demonstration helps understand the situation better: http://www.youtube.com/watch?v=SsXV1OXW3fo
 
@@ -115,10 +115,11 @@ A video demonstration helps understand the situation better: http://www.youtube.
 
 Initialization:
 --------------
+I don't intend to let script kiddies to use the code, so yeah, a little bit of configuration will help make the program run. Otherwise, it is just a nonsense piece of code.
+
 How to initialize the projects:
 - All config and structure in pom.xml
 - Initialize: mvn clean install
 - Link Eclipse config/libs: mvn eclipse:eclipse
 - Import directly from Eclipse
 - Make a Source Folder
-
