@@ -123,7 +123,7 @@ Let's analyze the config.db a bit and see what is inside the file (using sqlite3
  	        print 'https://www.dropbox.com/cli_link?host_id=' + string.lstrip(pickle.loads(base64.b64decode(row[1]))) if row[1] != None else row[1]
  	  db.close()
 
-I read on the newest article that dropbox has implemented an ecryption way to protect the credential of the PC but I didn't test it yet. I just leave it up to use. In the range of this Readme file, i'm just using the most relevant information in order to ultilize and bot the services.
+I read on the newest article that dropbox has implemented an ecryption way to protect the credential of the PC but I didn't test it yet. I just leave it up to you. In the limitation of this Readme file, i'm just using the most relevant information in order to ultilize and bot the services.
 
 
 Initialization:
