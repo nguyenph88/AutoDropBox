@@ -1,0 +1,48 @@
+Start:
+hadoop-ec2 launch-cluster --auto-shutdown=170 large 1
+
+Terminate:
+hadoop-ec2 terminate-cluster large
+
+Login:
+hadoop-ec2 login large
+
+Check 64bits:
+uname -a
+
+Install:
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+~/.dropbox-dist/dropboxd &
+
+Run this after confirm:
+rm -rf ~/.dropbox/
+
+Package:
+lynx
+
+Find out about cURL
+
+https://www.dropbox.com/cli_link?host_id=dd3332c109fe578456b912265109abcc
+https://www.dropbox.com/cli_link?host_id=9e4a7bf51ae5a208d50d4212900d9af2
+https://www.dropbox.com/cli_link?host_id=8493562dc4246545e9d881681f9a91b4
+https://www.dropbox.com/cli_link?host_id=7fca16542bb43fa85f44994115a0e3cd
+https://www.dropbox.com/cli_link?host_id=0c10261a940d70a3ab6569c7b28d067e
+https://www.dropbox.com/cli_link?host_id=1997e493e4c29e8e525b55139ef484ed
+
+curl --user SheranKalian100@qq.com:passasd123 https://www.dropbox.com/cli_link?host_id=0c10261a940d70a3ab6569c7b28d067e -v 
+wget --save-cookies cookies.txt --keep-session-cookies --post-data="login_email=SheranKalian100@qq.com&login_password=passasd123" "https://www.dropbox.com/cli_link?host_id=0c10261a940d70a3ab6569c7b28d067e"
+
+
+
+	#!/usr/bin/python
+	import base64, pickle, sqlite3, os, string
+
+	dropbox_db_path = os.path.expanduser('~/.dropbox/dropbox.db')
+
+	db = sqlite3.connect(dropbox_db_path)
+	cur = db.cursor()
+	cur.execute('select key, value from config where key ="host_id" order by key')
+	for row in cur:
+	        print 'https://www.dropbox.com/cli_link?host_id=' + string.lstrip(pickle.loads(base64.b64decode(row[1]))) if row[1] != None else row[1]
+	db.close()
+
